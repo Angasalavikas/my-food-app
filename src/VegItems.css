@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* Page */
+
+.veg-page{
+    background:#f7faf7;
+    min-height:100vh;
+    padding:40px 25px;
+}
+
+/* Heading */
+
+.veg-heading{
+    text-align:center;
+    font-size:38px;
+    color:#2f5d50;
+    margin-bottom:40px;
+    font-weight:600;
+}
+
+/* Grid */
+
+.veg-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+    max-width:1300px;
+    margin:auto;
+    list-style:none;
+}
+
+/* Card */
+
+.veg-item-card{
+    background:#ffffff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.35s;
+    padding:18px;
+    text-align:center;
+}
+
+.veg-item-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+}
+
+/* Image */
+
+.veg-image{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* Name */
+
+.veg-name{
+    color:#2f5d50;
+    margin-top:18px;
+    font-size:24px;
+    font-weight:600;
+}
+
+/* Description */
+
+.veg-description{
+    color:#707070;
+    font-size:15px;
+    line-height:1.6;
+    margin:12px 0;
+}
+
+/* Price */
+
+.veg-price{
+    color:#27ae60;
+    font-size:24px;
+    margin-bottom:18px;
+}
+
+/* Button */
+
+.veg-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:20px;
+    background:#4caf50;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.veg-btn:hover{
+    background:pink;
+    transform:translateY(-2px);
+}
+
+.veg-btn:active{
+    transform:scale(.98);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.veg-heading{
+    font-size:30px;
+}
+
+.veg-grid{
+    gap:20px;
+}
+
+}
