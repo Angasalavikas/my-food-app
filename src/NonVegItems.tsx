@@ -1,56 +1,76 @@
+import { useContext } from "react";
+import type { Product } from "./Interface/Product";
+import { CartContext } from "./ContextApi/CartContext";
 import "./NonVegItems.css";
 
-interface NonVegItem {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
-  description: string;
-}
-
 function NonVegItems() {
-  const nonVegItems: NonVegItem[] = [
-    { id: 1, name: "Bread Egg", img: "images/nonveg/breadegg.avif", price: 500, description: "Fresh Bread Egg" },
-    { id: 2, name: "Chicken", img: "images/nonveg/chicken.avif", price: 600, description: "Fresh Chicken" },
-    { id: 3, name: "Chicken Biryani", img: "images/nonveg/chickenbiriyani.jpg", price: 800, description: "Fresh Chicken Biryani" },
-    { id: 4, name: "Chicken Pizza", img: "images/nonveg/chickenpizza.avif", price: 700, description: "Fresh Chicken Pizza" },
-    { id: 5, name: "Crab", img: "images/nonveg/crab.webp", price: 900, description: "Fresh Crab" },
-    { id: 6, name: "Fish", img: "images/nonveg/fish.jpg", price: 1000, description: "Fresh Fish" },
-    { id: 7, name: "Mutton", img: "images/nonveg/mutton.webp", price: 750, description: "Fresh Mutton" },
-    { id: 8, name: "Prawns", img: "images/nonveg/prawns.webp", price: 850, description: "Fresh Prawns" },
+  const { cart, addToCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+
+  const nonVegItems: Product[] = [
+    { id: 201, name: "Bread Egg", imageUrl: "images/nonveg/breadegg.avif", price: 500, description: "Toasted bread with layered fluffy eggs" },
+    { id: 202, name: "Chicken", imageUrl: "images/nonveg/chicken.avif", price: 600, description: "Fresh tender chicken cuts ready to cook" },
+    { id: 203, name: "Chicken Biryani", imageUrl: "images/nonveg/chickenbiriyani.jpg", price: 800, description: "Aromatic basmati rice cooked with succulent chicken" },
+    { id: 204, name: "Chicken Pizza", imageUrl: "images/nonveg/chickenpizza.avif", price: 700, description: "Cheese-loaded crust topped with spicy grilled chicken" },
+    { id: 205, name: "Crab", imageUrl: "images/nonveg/crab.webp", price: 900, description: "Freshly sourced crabs perfect for curry" },
+    { id: 206, name: "Fish", imageUrl: "images/nonveg/fish.jpg", price: 1000, description: "Fresh water fish rich in healthy Omega-3" },
+    { id: 207, name: "Mutton", imageUrl: "images/nonveg/mutton.webp", price: 750, description: "Premium quality tender boneless mutton pieces" },
+    { id: 208, name: "Prawns", imageUrl: "images/nonveg/prawns.webp", price: 850, description: "Freshly cleaned and deveined marine prawns" },
   ];
 
   return (
     <div className="nonveg-page">
+      <div className="category-header">
+        <h1 className="nonveg-heading">🍗 Fresh Non-Vegetarian Items 🍤</h1>
+        <p className="category-subtitle">Delectable, protein-rich seafood and meat items prepared fresh for your cravings.</p>
+      </div>
 
-      <h1 className="nonveg-heading">🍗 Fresh Non-Vegetarian Items 🍤</h1>
+      <div className="nonveg-grid">
+        {nonVegItems.map((item) => {
+          const cartItem = cart.find((x) => x.id === item.id);
+          return (
+            <div key={item.id} className="nonveg-item-card">
+              <div className="card-image-container">
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className="nonveg-image"
+                />
+                <span className="card-badge premium">Chef's Choice</span>
+              </div>
 
-      <ul className="nonveg-grid">
-        {nonVegItems.map((item) => (
-          <li key={item.id} className="nonveg-item-card">
+              <div className="card-details-box">
+                <div className="item-meta">
+                  <div className="food-indicator non-veg">
+                    <span className="dot"></span>
+                  </div>
+                </div>
+                <h2 className="nonveg-name">{item.name}</h2>
+                <p className="nonveg-description">
+                  {item.description}
+                </p>
 
-            <img
-              src={item.img}
-              alt={item.name}
-              className="nonveg-image"
-            />
+                <div className="card-footer">
+                  <h3 className="nonveg-price">₹{item.price}</h3>
 
-            <h2 className="nonveg-name">{item.name}</h2>
-
-            <p className="nonveg-description">
-              {item.description}
-            </p>
-
-            <h3 className="nonveg-price">₹ {item.price}</h3>
-
-            <button className="nonveg-btn">
-              🛒 Purchase
-            </button>
-
-          </li>
-        ))}
-      </ul>
-
+                  <div className="action-container">
+                    {cartItem ? (
+                      <div className="quantity-controller">
+                        <button className="qty-btn dec" onClick={() => decreaseQuantity(item.id)}>−</button>
+                        <span className="qty-val">{cartItem.quantity}</span>
+                        <button className="qty-btn inc" onClick={() => increaseQuantity(item.id)}>+</button>
+                      </div>
+                    ) : (
+                      <button className="add-btn" onClick={() => addToCart(item)}>
+                        ADD <span className="plus">+</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

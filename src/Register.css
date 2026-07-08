@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 40px 20px;
+  font-family: 'Outfit', sans-serif;
+  background-color: #f8fafc;
+}
+
+/* Form Container Card */
+.register-form {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  animation: fadeInForm 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Title */
+.form-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* Input Fields Wrapper */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  outline: none;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Focus and Active States */
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #fc8019;
+  box-shadow: 0 0 0 3px rgba(252, 128, 25, 0.15);
+}
+
+.input-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Register Button styled like main brand button */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  background: #fc8019;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(252, 128, 25, 0.2);
+  transition: all 0.25s ease;
+}
+
+.register-btn:hover {
+  background: #e46e14;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(252, 128, 25, 0.35);
+}
+
+.register-btn:active {
+  transform: scale(0.98);
+}
+
+/* Keyframes */
+@keyframes fadeInForm {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive viewports */
+@media (max-width: 480px) {
+  .register-form {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+  .form-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+}

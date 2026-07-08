@@ -1,48 +1,70 @@
+import { useContext } from "react";
+import type { Product } from "./Interface/Product";
+import { CartContext } from "./ContextApi/CartContext";
 import "./VegItems.css";
 
-interface VegItem {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
-  description: string;
-}
-
 function VegItems() {
-  const vegItems: VegItem[] = [
-    { id: 1, name: "Avocado", img: "images/veg/avacado.jpg", price: 250, description: "Fresh Avocado" },
-    { id: 2, name: "Brinjal", img: "images/veg/brinjal.png", price: 200, description: "Fresh Brinjal" },
-    { id: 3, name: "Broccoli", img: "images/veg/broccoli.jpg", price: 150, description: "Fresh Broccoli" },
-    { id: 4, name: "Cabbage", img: "images/veg/cabbage.jpg", price: 180, description: "Fresh Cabbage" },
-    { id: 5, name: "Carrot", img: "images/veg/carrot.jpg", price: 220, description: "Fresh Carrot" },
-    { id: 6, name: "Ladies Finger", img: "images/veg/ladies-finger.jpg", price: 300, description: "Fresh Ladies Finger" },
-    { id: 7, name: "Tomato", img: "images/veg/tomato.jpg", price: 350, description: "Fresh Tomato" },
-    { id: 8, name: "Onion", img: "images/veg/onions.jpg", price: 400, description: "Fresh Onion" }
+  const { cart, addToCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+
+  const vegItems: Product[] = [
+    { id: 101, name: "Avocado", imageUrl: "images/veg/avacado.jpg", price: 250, description: "Fresh premium Avocado with rich nutrients" },
+    { id: 102, name: "Brinjal", imageUrl: "images/veg/brinjal.png", price: 200, description: "Organic fresh Brinjal harvested daily" },
+    { id: 103, name: "Broccoli", imageUrl: "images/veg/broccoli.jpg", price: 150, description: "Crisp green Broccoli rich in vitamins" },
+    { id: 104, name: "Cabbage", imageUrl: "images/veg/cabbage.jpg", price: 180, description: "Fresh and clean local green Cabbage" },
+    { id: 105, name: "Carrot", imageUrl: "images/veg/carrot.jpg", price: 220, description: "Sweet and crunchy farm-fresh Carrots" },
+    { id: 106, name: "Ladies Finger", imageUrl: "images/veg/ladies-finger.jpg", price: 300, description: "Tender and high-quality Okra" },
+    { id: 107, name: "Tomato", imageUrl: "images/veg/tomato.jpg", price: 350, description: "Juicy vine-ripened red Tomatoes" },
+    { id: 108, name: "Onion", imageUrl: "images/veg/onions.jpg", price: 400, description: "Fresh red Onions direct from farmers" }
   ];
 
   return (
     <div className="veg-page">
+      <div className="category-header">
+        <h1 className="veg-heading">🥦 Fresh Vegetables 🥕</h1>
+        <p className="category-subtitle">Farm-fresh, handpicked organic green selections delivered to your doorstep.</p>
+      </div>
 
-      <h1 className="veg-heading">🥦 Fresh Vegetables 🥕</h1>
+      <div className="veg-grid">
+        {vegItems.map((item) => {
+          const cartItem = cart.find((x) => x.id === item.id);
+          return (
+            <div key={item.id} className="veg-item-card">
+              <div className="card-image-container">
+                <img src={item.imageUrl} alt={item.name} className="veg-image" />
+                <span className="card-badge bestseller">Bestseller</span>
+              </div>
 
-      <ul className="veg-grid">
-        {vegItems.map((item) => (
-          <li key={item.id} className="veg-item-card">
+              <div className="card-details-box">
+                <div className="item-meta">
+                  <div className="food-indicator veg">
+                    <span className="dot"></span>
+                  </div>
+                </div>
+                <h2 className="veg-name">{item.name}</h2>
+                <p className="veg-description">{item.description}</p>
+                
+                <div className="card-footer">
+                  <h3 className="veg-price">₹{item.price}</h3>
 
-            <img src={item.img} alt={item.name} className="veg-image" />
-
-            <h2 className="veg-name">{item.name}</h2>
-
-            <p className="veg-description">{item.description}</p>
-
-            <h3 className="veg-price">₹ {item.price}</h3>
-
-            <button className="veg-btn">🛒 Purchase</button>
-
-          </li>
-        ))}
-      </ul>
-
+                  <div className="action-container">
+                    {cartItem ? (
+                      <div className="quantity-controller">
+                        <button className="qty-btn dec" onClick={() => decreaseQuantity(item.id)}>−</button>
+                        <span className="qty-val">{cartItem.quantity}</span>
+                        <button className="qty-btn inc" onClick={() => increaseQuantity(item.id)}>+</button>
+                      </div>
+                    ) : (
+                      <button className="add-btn" onClick={() => addToCart(item)}>
+                        ADD <span className="plus">+</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

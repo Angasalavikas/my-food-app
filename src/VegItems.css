@@ -1,127 +1,261 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+.veg-page {
+  background: #f8fafc;
+  min-height: 100vh;
+  padding: 40px 24px;
+  font-family: 'Outfit', sans-serif;
 }
 
-/* Page */
-
-.veg-page{
-    background:#f7faf7;
-    min-height:100vh;
-    padding:40px 25px;
+.category-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 40px;
 }
 
-/* Heading */
-
-.veg-heading{
-    text-align:center;
-    font-size:38px;
-    color:#2f5d50;
-    margin-bottom:40px;
-    font-weight:600;
+.veg-heading {
+  font-size: 36px;
+  color: #1e293b;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-/* Grid */
-
-.veg-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:30px;
-    max-width:1300px;
-    margin:auto;
-    list-style:none;
+.category-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.6;
 }
 
-/* Card */
-
-.veg-item-card{
-    background:#ffffff;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    transition:.35s;
-    padding:18px;
-    text-align:center;
+/* Grid Layout */
+.veg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 
-.veg-item-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 15px 30px rgba(0,0,0,.12);
+/* Premium Card Design */
+.veg-item-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Image */
-
-.veg-image{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:12px;
+.veg-item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(15, 138, 101, 0.2);
 }
 
-/* Name */
-
-.veg-name{
-    color:#2f5d50;
-    margin-top:18px;
-    font-size:24px;
-    font-weight:600;
+/* Image styling */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 66%; /* 3:2 Aspect Ratio */
+  overflow: hidden;
 }
 
-/* Description */
-
-.veg-description{
-    color:#707070;
-    font-size:15px;
-    line-height:1.6;
-    margin:12px 0;
+.veg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-/* Price */
-
-.veg-price{
-    color:#27ae60;
-    font-size:24px;
-    margin-bottom:18px;
+.veg-item-card:hover .veg-image {
+  transform: scale(1.08);
 }
 
-/* Button */
-
-.veg-btn{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:20px;
-    background:#4caf50;
-    color:white;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+.card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 6px;
+  color: white;
+  letter-spacing: 0.5px;
 }
 
-.veg-btn:hover{
-    background:pink;
-    transform:translateY(-2px);
+.card-badge.bestseller {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  box-shadow: 0 4px 10px rgba(254, 180, 123, 0.4);
 }
 
-.veg-btn:active{
-    transform:scale(.98);
+/* Content Details */
+.card-details-box {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-/* Responsive */
-
-@media(max-width:768px){
-
-.veg-heading{
-    font-size:30px;
+.item-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.veg-grid{
-    gap:20px;
+/* Veg/Non-Veg Indicators */
+.food-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid;
+  border-radius: 3px;
+  padding: 1px;
+  margin-bottom: 8px;
 }
 
+.food-indicator.veg {
+  border-color: #0f8a65;
+}
+
+.food-indicator.veg .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #0f8a65;
+}
+
+.veg-name {
+  font-size: 20px;
+  color: #0f172a;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.veg-description {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: left;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.veg-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* ADD & Quantity Button Swiggy Style */
+.action-container {
+  min-width: 100px;
+  height: 38px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.add-btn {
+  width: 100px;
+  height: 100%;
+  border: 1.5px solid #22c55e;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #22c55e;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+  background: #22c55e;
+  color: #ffffff;
+  box-shadow: 0 6px 12px rgba(34, 197, 94, 0.25);
+  transform: translateY(-1px);
+}
+
+.add-btn .plus {
+  margin-left: 4px;
+  font-size: 15px;
+}
+
+.quantity-controller {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  height: 100%;
+  border-radius: 8px;
+  background: #22c55e;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.2);
+}
+
+.qty-btn {
+  border: none;
+  background: transparent;
+  color: white;
+  width: 32px;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.qty-val {
+  font-size: 14px;
+  font-weight: 700;
+  width: 36px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .veg-page {
+    padding: 30px 16px;
+  }
+  .veg-heading {
+    font-size: 28px;
+  }
+  .veg-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
 }

@@ -1,94 +1,110 @@
+import { useContext } from "react";
+import type { Product } from "./Interface/Product";
+import { CartContext } from "./ContextApi/CartContext";
 import "./MilkItems.css";
 
-interface MilkItem {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
-  description: string;
-}
-
 function MilkItems() {
-  const milkItems: MilkItem[] = [
+  const { cart, addToCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+
+  const milkItems: Product[] = [
     {
-      id: 1,
+      id: 301,
       name: "Butter",
-      img: "images/milk/butter.webp",
+      imageUrl: "images/milk/butter.webp",
       price: 50,
-      description: "Fresh butter made from cow milk",
+      description: "Creamy rich butter churned from pure cow milk",
     },
     {
-      id: 2,
+      id: 302,
       name: "Cheese",
-      img: "images/milk/cheese.jpg",
+      imageUrl: "images/milk/cheese.jpg",
       price: 60,
-      description: "Fresh cheese made from buffalo milk",
+      description: "Grated cheddar cheese made from premium buffalo milk",
     },
     {
-      id: 3,
+      id: 303,
       name: "Curd",
-      img: "images/milk/curd.webp",
+      imageUrl: "images/milk/curd.webp",
       price: 70,
-      description: "Fresh curd made from cow milk",
+      description: "Thick probiotic curd fermented naturally",
     },
     {
-      id: 4,
+      id: 304,
       name: "Ice Cream",
-      img: "images/milk/icecreams.jpg",
+      imageUrl: "images/milk/icecreams.jpg",
       price: 80,
-      description: "Fresh ice cream made from cow milk",
+      description: "Classic rich vanilla ice cream made with real dairy cream",
     },
     {
-      id: 5,
+      id: 305,
       name: "Milk",
-      img: "images/milk/milk.png",
+      imageUrl: "images/milk/milk.png",
       price: 90,
-      description: "Fresh milk",
+      description: "Pasteurized farm-fresh full cream milk",
     },
     {
-      id: 6,
+      id: 306,
       name: "Yogurt",
-      img: "images/milk/yogurt.jpg",
+      imageUrl: "images/milk/yogurt.jpg",
       price: 100,
-      description: "Fresh yogurt made from cow milk",
+      description: "Silky greek yogurt with pure cow milk goodness",
     },
   ];
 
   return (
     <div className="milk-page">
+      <div className="category-header">
+        <h1 className="milk-heading">🥛 Fresh Milk Products 🧈</h1>
+        <p className="category-subtitle">Nutritious and pure dairy essentials sourced from standard organic farms.</p>
+      </div>
 
-      <h1 className="milk-heading">
-        🥛 Fresh Milk Products 🧈
-      </h1>
+      <div className="milk-grid">
+        {milkItems.map((item) => {
+          const cartItem = cart.find((x) => x.id === item.id);
+          return (
+            <div key={item.id} className="milk-item-card">
+              <div className="card-image-container">
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className="milk-image"
+                />
+                <span className="card-badge dairy">100% Pure</span>
+              </div>
 
-      <ul className="milk-grid">
-        {milkItems.map((item) => (
-          <li key={item.id} className="milk-item-card">
+              <div className="card-details-box">
+                <div className="item-meta">
+                  <div className="food-indicator veg">
+                    <span className="dot"></span>
+                  </div>
+                </div>
+                <h2 className="milk-name">{item.name}</h2>
+                <p className="milk-description">
+                  {item.description}
+                </p>
 
-            <img
-              src={item.img}
-              alt={item.name}
-              className="milk-image"
-            />
+                <div className="card-footer">
+                  <h3 className="milk-price">₹{item.price}</h3>
 
-            <h2 className="milk-name">{item.name}</h2>
-
-            <p className="milk-description">
-              {item.description}
-            </p>
-
-            <h3 className="milk-price">
-              ₹ {item.price}
-            </h3>
-
-            <button className="milk-btn">
-              🛒 Purchase
-            </button>
-
-          </li>
-        ))}
-      </ul>
-
+                  <div className="action-container">
+                    {cartItem ? (
+                      <div className="quantity-controller">
+                        <button className="qty-btn dec" onClick={() => decreaseQuantity(item.id)}>−</button>
+                        <span className="qty-val">{cartItem.quantity}</span>
+                        <button className="qty-btn inc" onClick={() => increaseQuantity(item.id)}>+</button>
+                      </div>
+                    ) : (
+                      <button className="add-btn" onClick={() => addToCart(item)}>
+                        ADD <span className="plus">+</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
