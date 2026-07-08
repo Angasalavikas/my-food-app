@@ -400,6 +400,7 @@ function Cart() {
         </div>
       )}
 
+      
       {/* Simulated Receipt Modal Overlay */}
       {isOrderPlaced && (
         <div className="modal-overlay">
@@ -440,14 +441,13 @@ function Cart() {
                 <span>Paid via {paymentMethod.toUpperCase()}:</span>
                 <span>₹{finalAmount.toFixed(2)}</span>
               </div>
-              
+          
               <div className="receipt-footer">
                 <p>Deliver to: <strong>{customerName}</strong> ({customerEmail})</p>
                 <p className="est-address">Address: <strong>{customerAddress}</strong></p>
                 <p className="est-delivery" style={{ marginTop: '4px' }}>Estimated Delivery Time: <strong>25 mins</strong></p>
               </div>
             </div>
-
             <button className="close-receipt-btn" onClick={handleCloseModal}>
               Done & Clear Cart
             </button>
