@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { CartContext } from "../ContextApi/CartContext";
-import { coupons } from "../data/coupons";
+
 import {
   FaMoneyBillWave,
   FaShoppingCart,
@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../Cart.css";
+import { coupons } from "../data/Coupons";
 
 function Cart() {
   const {
