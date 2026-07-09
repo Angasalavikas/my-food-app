@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { RegisterRequest } from "../Interface/RegisterRequest";
 import { servieRegister } from "../services/AuthService";
+import { toast } from "react-toastify";
 import "../Register.css";
 function Register() {
   const { register, handleSubmit, reset } = useForm<RegisterRequest>();
@@ -9,13 +10,13 @@ function Register() {
     try {
       const response = await servieRegister(data);
 
-      alert("Registration Successful!");
+      toast.success("Registration Successful!");
       console.log(response);
 
       reset();
     } catch (error) {
       console.log(error);
-      alert("Registration Failed");
+      toast.error("Registration Failed");
     }
   };
 

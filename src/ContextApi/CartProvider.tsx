@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useImmer } from "use-immer";
+import { toast } from "react-toastify";
 
 import {
   addToCart,
@@ -25,9 +26,17 @@ export function CartProvider({ children }: CartProviderProps) {
       value={{
         cart,
 
-        addToCart: (product) => setCart((draft) => addToCart(draft, product)),
+        addToCart: (product) => {
+          setCart((draft) => addToCart(draft, product));
+          toast.success(`🛒 Added ${product.description || product.name} to cart!`);
+        },
 
-        removeFromCart: (id) => setCart((draft) => removeFromCart(draft, id)),
+        removeFromCart: (id) => {
+          const item = cart.find((x) => x.id === id);
+          const itemName = item ? item.description || item.name : "item";
+          setCart((draft) => removeFromCart(draft, id));
+          toast.info(`🗑️ Removed ${itemName} from cart`);
+        },
 
         increaseQuantity: (id) =>
           setCart((draft) => increaseQuantity(draft, id)),

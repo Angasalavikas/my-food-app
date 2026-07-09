@@ -8,6 +8,8 @@ import NonVegItems from "./NonVegItems";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
 import { FiShoppingCart, FiUser, FiSearch } from "react-icons/fi";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
@@ -77,11 +79,15 @@ function App() {
           </Routes>
         </main>
 
+
+
+
         <footer className="main-footer">
           <div className="footer-inner">
             <p>© 2026 BiteRush. Made with ❤️ for food lovers. Designed like Swiggy & Zomato.</p>
           </div>
         </footer>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} closeOnClick pauseOnHover />
       </div>
     </BrowserRouter>
   );

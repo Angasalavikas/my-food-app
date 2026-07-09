@@ -1,5 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { CartContext } from "../ContextApi/CartContext";
+import { toast } from "react-toastify";
 
 import {
   FaMoneyBillWave,
@@ -13,6 +14,7 @@ import {
   FaUser,
   FaEnvelope,
   FaMapMarkedAlt,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../Cart.css";
@@ -42,6 +44,50 @@ function Cart() {
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const [isLocating, setIsLocating] = useState(false);
+
+  const handleGetLocation = () => {
+    if (!navigator.geolocation) {
+      toast.error("Geolocation is not supported by your browser");
+      return;
+    }
+    
+    setIsLocating(true);
+    toast.info("Fetching your current location...");
+    
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.display_name) {
+              setCustomerAddress(data.display_name);
+              toast.success("📍 Location updated successfully!");
+              setIsLocating(false);
+              return;
+            }
+          }
+          setCustomerAddress(`Latitude: ${latitude.toFixed(6)}, Longitude: ${longitude.toFixed(6)}`);
+          toast.success("📍 GPS coordinates loaded!");
+        } catch (error) {
+          console.error(error);
+          setCustomerAddress(`Latitude: ${latitude.toFixed(6)}, Longitude: ${longitude.toFixed(6)}`);
+          toast.success("📍 GPS coordinates loaded!");
+        }
+        setIsLocating(false);
+      },
+      (error) => {
+        console.error(error);
+        toast.error("Unable to retrieve location. Please type manually.");
+        setIsLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+    );
+  };
 
   const grandTotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -58,9 +104,11 @@ function Cart() {
     if (coupon) {
       setCouponPercent(coupon.discount);
       setMessage(`🎉 Coupon Applied (${coupon.discount}% OFF)`);
+      toast.success(`🎉 Coupon "${couponCode.toUpperCase()}" Applied (${coupon.discount}% OFF)!`);
     } else {
       setCouponPercent(0);
       setMessage("❌ Invalid Coupon Code by Ujwala");
+      toast.error("❌ Invalid Coupon Code!");
     }
   };
 
@@ -77,11 +125,12 @@ function Cart() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!customerName.trim() || !customerEmail.trim() || !customerAddress.trim() || !customerPhone.trim()) {
-      alert("Please fill in all the details to complete your order.");
+      toast.warn("⚠️ Please fill in all the details to complete your order.");
       return;
     }
     setShowCheckoutForm(false);
     setIsOrderPlaced(true);
+    toast.success("🎉 Order Placed Successfully!");
   };
 
   const handleCloseModal = () => {
@@ -383,7 +432,32 @@ function Cart() {
            </div>
 
            <div className="form-input-group">
-                <label><FaMapMarkedAlt /> Delivery Address</label>
+                <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><FaMapMarkedAlt /> Delivery Address</span>
+                  <button 
+                    type="button" 
+                    className="current-location-btn" 
+                    onClick={handleGetLocation}
+                    disabled={isLocating}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#fc8019',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      transition: 'all 0.2s',
+                    }}
+                    title="Use Current Location"
+                  >
+                    <FaMapMarkerAlt /> {isLocating ? "Locating..." : "Use Current Location"}
+                  </button>
+                </label>
                 <textarea 
                   placeholder="Flat No, Building, Street, Area, City & Pincode" 
                   rows={4}
