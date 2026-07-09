@@ -7,14 +7,14 @@ function VegItems() {
   const { cart, addToCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
 
   const vegItems: Product[] = [
-    { id: 101, name: "Avocado", imageUrl: "images/veg/avacado.jpg", price: 250, description: "Fresh premium Avocado with rich nutrients" },
-    { id: 102, name: "Brinjal", imageUrl: "images/veg/brinjal.png", price: 200, description: "Organic fresh Brinjal harvested daily" },
+    { id: 101, name: "Avocado", imageUrl: "images/veg/avacado.jpg", price: 200, description: "Fresh premium Avocado with rich nutrients" },
+    { id: 102, name: "Brinjal", imageUrl: "images/veg/brinjal.png", price: 50, description: "Organic fresh Brinjal harvested daily" },
     { id: 103, name: "Broccoli", imageUrl: "images/veg/broccoli.jpg", price: 150, description: "Crisp green Broccoli rich in vitamins" },
-    { id: 104, name: "Cabbage", imageUrl: "images/veg/cabbage.jpg", price: 180, description: "Fresh and clean local green Cabbage" },
-    { id: 105, name: "Carrot", imageUrl: "images/veg/carrot.jpg", price: 220, description: "Sweet and crunchy farm-fresh Carrots" },
-    { id: 106, name: "Ladies Finger", imageUrl: "images/veg/ladies-finger.jpg", price: 300, description: "Tender and high-quality Okra" },
-    { id: 107, name: "Tomato", imageUrl: "images/veg/tomato.jpg", price: 350, description: "Juicy vine-ripened red Tomatoes" },
-    { id: 108, name: "Onion", imageUrl: "images/veg/onions.jpg", price: 400, description: "Fresh red Onions direct from farmers" }
+    { id: 104, name: "Cabbage", imageUrl: "images/veg/cabbage.jpg", price: 100, description: "Fresh and clean local green Cabbage" },
+    { id: 105, name: "Carrot", imageUrl: "images/veg/carrot.jpg", price: 80, description: "Sweet and crunchy farm-fresh Carrots" },
+    { id: 106, name: "Ladies Finger", imageUrl: "images/veg/ladies-finger.jpg", price: 30, description: "Tender and high-quality Okra" },
+    { id: 107, name: "Tomato", imageUrl: "images/veg/tomato.jpg", price: 50, description: "Juicy vine-ripened red Tomatoes" },
+    { id: 108, name: "Onion", imageUrl: "images/veg/onions.jpg", price: 40, description: "Fresh red Onions direct from farmers" }
   ];
 
   return (

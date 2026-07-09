@@ -17,6 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../Cart.css";
 import { coupons } from "../data/Coupons";
+import { QRCode } from "react-qr-code";
 
 function Cart() {
   const {
@@ -200,6 +201,15 @@ function Cart() {
                     <span>Instant pay from bank account using virtual ID</span>
                   </div>
                 </label>
+                {paymentMethod === "upi" && (
+              <div className="qr-section">
+                <h4>Scan UPI QR to Pay ₹{finalAmount.toFixed(2)}</h4>
+                <QRCode
+                  value={`upi://pay?pa=9100212550@ibl&pn=vikasMart&am=${finalAmount.toFixed(2)}&cu=INR`}
+                />
+                <p>UPI ID: 9100212550@ibl</p>
+              </div>
+            )}
 
                 <label className={`payment-option-row ${paymentMethod === "card" ? "selected" : ""}`}>
                   <input 

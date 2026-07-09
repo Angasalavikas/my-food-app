@@ -7,14 +7,14 @@ function NonVegItems() {
   const { cart, addToCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
 
   const nonVegItems: Product[] = [
-    { id: 201, name: "Bread Egg", imageUrl: "images/nonveg/breadegg.avif", price: 500, description: "Toasted bread with layered fluffy eggs" },
-    { id: 202, name: "Chicken", imageUrl: "images/nonveg/chicken.avif", price: 600, description: "Fresh tender chicken cuts ready to cook" },
-    { id: 203, name: "Chicken Biryani", imageUrl: "images/nonveg/chickenbiriyani.jpg", price: 800, description: "Aromatic basmati rice cooked with succulent chicken" },
-    { id: 204, name: "Chicken Pizza", imageUrl: "images/nonveg/chickenpizza.avif", price: 700, description: "Cheese-loaded crust topped with spicy grilled chicken" },
-    { id: 205, name: "Crab", imageUrl: "images/nonveg/crab.webp", price: 900, description: "Freshly sourced crabs perfect for curry" },
-    { id: 206, name: "Fish", imageUrl: "images/nonveg/fish.jpg", price: 1000, description: "Fresh water fish rich in healthy Omega-3" },
+    { id: 201, name: "Bread Egg", imageUrl: "images/nonveg/breadegg.avif", price: 50, description: "Toasted bread with layered fluffy eggs" },
+    { id: 202, name: "Chicken", imageUrl: "images/nonveg/chicken.avif", price: 200, description: "Fresh tender chicken cuts ready to cook" },
+    { id: 203, name: "Chicken Biryani", imageUrl: "images/nonveg/chickenbiriyani.jpg", price: 200, description: "Aromatic basmati rice cooked with succulent chicken" },
+    { id: 204, name: "Chicken Pizza", imageUrl: "images/nonveg/chickenpizza.avif", price: 70, description: "Cheese-loaded crust topped with spicy grilled chicken" },
+    { id: 205, name: "Crab", imageUrl: "images/nonveg/crab.webp", price: 100, description: "Freshly sourced crabs perfect for curry" },
+    { id: 206, name: "Fish", imageUrl: "images/nonveg/fish.jpg", price: 100, description: "Fresh water fish rich in healthy Omega-3" },
     { id: 207, name: "Mutton", imageUrl: "images/nonveg/mutton.webp", price: 750, description: "Premium quality tender boneless mutton pieces" },
-    { id: 208, name: "Prawns", imageUrl: "images/nonveg/prawns.webp", price: 850, description: "Freshly cleaned and deveined marine prawns" },
+    { id: 208, name: "Prawns", imageUrl: "images/nonveg/prawns.webp", price: 550, description: "Freshly cleaned and deveined marine prawns" },
   ];
 
   return (
