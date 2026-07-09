@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import "../Cart.css";
 import { coupons } from "../data/Coupons";
 import { QRCode } from "react-qr-code";
+import { sendOrderEmail } from "../services/EmailService";
 
 function Cart() {
   const {
@@ -45,6 +46,48 @@ function Cart() {
   const [customerAddress, setCustomerAddress] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [isLocating, setIsLocating] = useState(false);
+
+const placeOrder = async () => {
+    if (!customerName || !customerPhone || !customerAddress) {
+      alert("Please fill all address details.");
+      return;
+    }
+    if (!paymentMethod) {
+      alert("Please select a payment method.");
+      return;
+    }
+    alert("Order Placed Successfully!");
+
+    //prepare the email information 
+    // Map the template params & our Data.
+   
+  const order = {
+      order_id: Math.floor(Math.random() * 100000),
+      name: customerName,
+      email: customerEmail, // Recipient email
+	  
+      orders: cart.map((item) => ({
+        name: item.name,
+        units: item.quantity,
+        price: item.price,
+        image_url: item.imageUrl,
+      })),
+
+      cost: {
+        shipping: 100,
+        tax: 100,
+        coupon: discount,
+        total: finalAmount,
+      },
+    };
+    
+    await sendOrderEmail(order);
+
+    clearCart();
+    navigate("/cart");
+  };
+
+
 
   const handleGetLocation = () => {
     if (!navigator.geolocation) {
@@ -107,7 +150,7 @@ function Cart() {
       toast.success(`🎉 Coupon "${couponCode.toUpperCase()}" Applied (${coupon.discount}% OFF)!`);
     } else {
       setCouponPercent(0);
-      setMessage("❌ Invalid Coupon Code by Ujwala");
+      setMessage("❌ Invalid Coupon Code ");
       toast.error("❌ Invalid Coupon Code!");
     }
   };
@@ -475,7 +518,7 @@ function Cart() {
                 >
                   Cancel
                 </button>
-                <button type="submit" className="form-confirm-btn">
+                <button onClick={placeOrder} className="form-confirm-btn">
                   Confirm Order & Pay (₹{finalAmount.toFixed(2)})
                 </button>
               </div>
