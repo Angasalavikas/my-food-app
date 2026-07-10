@@ -1,0 +1,573 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+.empty-icon{
+  padding: 0px;
+}
+/* ===========================
+   PAGE
+=========================== */
+
+.orders-page{
+
+    min-height:100vh;
+
+    padding:30px;
+
+    background:
+    radial-gradient(circle at top left,#fff4e8 0%,transparent 35%),
+    radial-gradient(circle at top right,#dcfce7 0%,transparent 35%),
+    linear-gradient(180deg,#f8fafc,#eef2f7);
+
+}
+
+.orders-title{
+
+    text-align:center;
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    color:#1f2937;
+
+    margin-bottom:45px;
+
+}
+
+.orders-title span{
+
+    color:#16a34a;
+
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.order-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    margin-bottom:35px;
+
+    border:1px solid #ececec;
+
+    transition:.35s;
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.08);
+
+}
+.orders-header{
+  margin-bottom: 20px;
+}
+
+.order-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 25px 55px rgba(0,0,0,.15);
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.order-card-header{
+    background: linear-gradient(135deg,#ff6b00,#ff8c42);
+    color:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+     margin: top 100px;
+    padding:25px 35px;
+}
+
+.order-left{
+    display:flex;
+    flex-direction:row;
+    gap:12px;
+}
+
+.order-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:18px;
+    margin-left:auto;
+}
+
+.order-date{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:8px;
+    padding-left:4px;
+
+    font-size:15px;
+    font-weight:500;
+}
+
+.order-status{
+    background:white;
+    color:#16a34a;
+    margin-top:8px;
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-weight:700;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.05);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* ===========================
+   EXPAND
+=========================== */
+
+.order-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:35px;
+
+    padding:35px;
+
+    animation:fade .4s ease;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(-20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+   PRODUCT
+=========================== */
+
+.product-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    background:white;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    transition:.3s;
+
+}
+
+.product-card:hover{
+
+    transform:translateX(10px);
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,.08);
+
+}
+
+.product-card img{
+
+    width:110px;
+
+    height:110px;
+
+    object-fit:contain;
+
+    background:#fff7ed;
+
+    border-radius:18px;
+
+    padding:10px;
+
+    transition:.3s;
+
+}
+
+.product-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.product-title{
+
+    font-size:19px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.product-qty{
+
+    color:#6b7280;
+
+    margin-top:8px;
+
+}
+
+.product-price{
+
+    color:#16a34a;
+
+    font-size:25px;
+
+    font-weight:800;
+
+}
+
+/* ===========================
+   ORDER DETAILS
+=========================== */
+
+.order-details{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.order-details h3{
+
+    margin-bottom:25px;
+
+    font-size:24px;
+
+    color:#1f2937;
+
+}
+
+.detail-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:1px dashed #e5e7eb;
+
+    color:#374151;
+
+}
+
+.detail-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.detail-row svg{
+
+    font-size:20px;
+
+    color:#ff6b00;
+
+}
+
+/* ===========================
+   BILL
+=========================== */
+
+.total-box{
+
+    margin-top:30px;
+
+    padding-top:20px;
+
+    border-top:2px dashed #ddd;
+
+}
+
+.total-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+    font-size:17px;
+
+}
+
+.discount{
+
+    color:#ef4444;
+
+}
+
+.final-total{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:
+    linear-gradient(135deg,#16a34a,#22c55e);
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   EMPTY
+=========================== */
+
+.no-orders{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+}
+
+.no-orders h1{
+
+    font-size:42px;
+
+    color:#6b7280;
+
+    margin-top:20px;
+
+}
+
+.no-orders img{
+
+    width:280px;
+
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:
+    linear-gradient(#ff6b00,#16a34a);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f3f4f6;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:992px){
+
+.orders-page{
+
+padding:20px;
+
+}
+
+.order-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:18px;
+
+}
+
+.order-content{
+
+grid-template-columns:1fr;
+
+}
+
+.order-details{
+
+margin-top:15px;
+
+}
+
+.product-card{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.product-card img{
+
+width:140px;
+
+height:140px;
+
+}
+
+.product-price{
+
+margin-top:10px;
+
+}
+
+.final-total{
+
+font-size:22px;
+
+}
+
+.orders-title{
+
+font-size:2.3rem;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.orders-title{
+
+font-size:2rem;
+
+}
+
+.order-header{
+
+padding:20px;
+
+}
+
+.order-header h2{
+
+font-size:20px;
+
+}
+
+.product-card{
+
+padding:15px;
+
+}
+
+.product-title{
+
+font-size:17px;
+
+}
+
+.final-total{
+
+font-size:20px;
+
+padding:15px;
+
+}
+
+}
+

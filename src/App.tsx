@@ -11,6 +11,7 @@ import { FiShoppingCart, FiUser, FiSearch } from "react-icons/fi";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import Order from "./components/Order";
 
 function App() {
   const { cart } = useContext(CartContext);
@@ -40,6 +41,7 @@ function App() {
               <NavLink to="/milk-items" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
                 🥛 Dairy
               </NavLink>
+          
             </nav>
 
             <div className="header-actions">
@@ -51,6 +53,11 @@ function App() {
               <NavLink to="/register" className={({ isActive }) => isActive ? "profile-btn active" : "profile-btn"}>
                 <FiUser className="action-icon" />
                 <span>Register</span>
+              </NavLink>
+
+              <NavLink to="/order" className={({ isActive }) => isActive ? "profile-btn active" : "profile-btn"}>
+                <FiUser className="action-icon" />
+                <span>Orders</span>
               </NavLink>
 
               <NavLink to="/cart" className="cart-badge-btn">
@@ -76,6 +83,7 @@ function App() {
             <Route path="/milk-items" element={<MilkItems />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/order" element={<Order />} />
           </Routes>
         </main>
 

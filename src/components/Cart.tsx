@@ -21,8 +21,13 @@ import "../Cart.css";
 import { coupons } from "../data/Coupons";
 import { QRCode } from "react-qr-code";
 import { sendOrderEmail } from "../services/EmailService";
+import { OrderContext } from "../ContextApi/OrderContext";
+
 
 function Cart() {
+
+  const {addOrder} = useContext(OrderContext);
+
   const {
     cart,
     removeFromCart,
@@ -82,9 +87,36 @@ const placeOrder = async () => {
     };
     
     await sendOrderEmail(order);
+    const orderData = {
+      orderNumber: Math.floor(Math.random() * 100000),
+
+      Name: customerName,
+
+      mobile: customerPhone,
+
+      email: customerEmail ,
+
+      address: customerAddress,
+
+      paymentMode: paymentMethod,
+
+      grandTotal: grandTotal,
+
+      discount: discount,
+
+      finalAmount: finalAmount,
+
+      orderDate: new Date().toLocaleString(),
+
+      status: "PLACED",
+
+      items: [...cart],
+    };
+
+    addOrder(orderData);
 
     clearCart();
-    navigate("/cart");
+    navigate("/order");
   };
 
 
