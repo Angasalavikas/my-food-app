@@ -47,7 +47,7 @@ function App() {
             <div className="header-actions">
               <div className="search-mock">
                 <FiSearch className="search-icon" />
-                <input type="text" placeholder="Search food..." disabled />
+                <input type="text" placeholder="Search food..." />
               </div>
 
               <NavLink to="/register" className={({ isActive }) => isActive ? "profile-btn active" : "profile-btn"}>
@@ -55,7 +55,7 @@ function App() {
                 <span>Register</span>
               </NavLink>
 
-              <NavLink to="/order" className={({ isActive }) => isActive ? "profile-btn active" : "profile-btn"}>
+              <NavLink to="/Orders" className={({ isActive }) => isActive ? "profile-btn active" : "profile-btn"}>
                 <FiUser className="action-icon" />
                 <span>Orders</span>
               </NavLink>
@@ -83,7 +83,7 @@ function App() {
             <Route path="/milk-items" element={<MilkItems />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/order" element={<Order />} />
+            <Route path="/orders" element={<Order />} />
           </Routes>
         </main>
 

@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
 import { CartContext } from "../ContextApi/CartContext";
 import { toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 import {
   FaMoneyBillWave,
   FaShoppingCart,
@@ -61,7 +61,7 @@ const placeOrder = async () => {
       alert("Please select a payment method.");
       return;
     }
-    alert("Order Placed Successfully!");
+    //alert("Order Placed Successfully!");
 
     //prepare the email information 
     // Map the template params & our Data.
@@ -113,10 +113,37 @@ const placeOrder = async () => {
       items: [...cart],
     };
 
-    addOrder(orderData);
+   addOrder(orderData);
 
-    clearCart();
-    navigate("/order");
+    Swal.fire({
+  icon: "success",
+  title: "✅ Order Placed!",
+  text: `Your order has been placed successfully.\nOrder ID: ${12345}`,
+
+  showConfirmButton: true,
+  confirmButtonText: "Track Order",
+  confirmButtonColor: "#2563eb",
+
+  showCancelButton: true,
+  cancelButtonText: "Close/Cancel",
+  cancelButtonColor: "#ef4444",
+
+  timer: 10000,
+  timerProgressBar: true,
+}).then((result) => {
+  // If user clicks "Track Order"
+  if (result.isConfirmed) {
+    navigate("/orders");
+  }
+
+  // If timer completes automatically
+  if (result.dismiss === Swal.DismissReason.timer) {
+    navigate("/orders");
+  }
+});
+
+   // clearCart();
+   // navigate("/order");
   };
 
 
